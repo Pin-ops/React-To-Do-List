@@ -1,6 +1,10 @@
 import React,{Component} from 'react';
-import {ListGroup} from 'react-bootstrap';
+import {Accordion,Card,Button} from 'react-bootstrap';
 import InputBtnGroup from '../InputBtnGroup/InputBtnGroup';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker-cssmodules.min.css'
+
 
 export class Home extends Component {
     state ={
@@ -25,26 +29,63 @@ export class Home extends Component {
         })
     }
 
+    ExampleCustomInput = ({ value, onClick }) => (
+        <button className="example-custom-input"
+            onClick={onClick}>
+            🗓
+        </button>
+    );
+
+
     render() {
         // console.log(this.state.items);
         let addItemList= this.state.items.map((val,i)=>
-            <ListGroup.Item key={i}>
+            // <ListGroup.Item key={i}>
 
-            {val}
-            </ListGroup.Item>
+            // {val}
 
+            // </ListGroup.Item>
+            <Card key={i}>
+                <Card.Header className="text-left">
+                    <DatePicker
+                        selected={this.state.startDate}
+                        onChange={
+                            date => this.setState({startDate:date})
+                        }
+                        customInput={<this.ExampleCustomInput />}
+                    />
+                    <Accordion.Toggle as={Button} variant="link"
+                            eventKey={i}>
+                            {val}
+                    </Accordion.Toggle>
+                </Card.Header>
+
+                <Accordion.Collapse eventKey={i}>
+                    <Card.Body className="p-0 ">
+                    <textarea
+                        value={this.state.startDate}
+                        rows='8'
+                        className="w-100 pl-4 pt-3 border border-0"
+                        placeholder="Please give me a detail..."
+                    />
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
         )
 
         return (
             <div>
+
                 <InputBtnGroup
                 pHolder="New Item"
                 btnText="Add Item"
                 itemPipe = {this.itemReceiveHandler}
                 />
-                <ListGroup>
+
+                <Accordion>
                     {addItemList}
-                </ListGroup>
+                </Accordion>
+
             </div>
         )
     }

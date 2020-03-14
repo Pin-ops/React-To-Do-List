@@ -1,0 +1,12 @@
+.card{
+    position: static !important;
+}
+.react-datepicker-wrapper{
+    width: 100%;
+}
+
+.react-datepicker-wrapper input{
+    width: 100%;
+    background-color: #EAECEE;
+    height: 50%;
+}

@@ -22,7 +22,7 @@ function InputBtnGroup(props) {
                     aria-describedby="basic-addon2"
                 />
                     <InputGroup.Append>
-                    <Button variant="danger"
+                    <Button variant="info"
                     type="submit"
                     >{props.btnText}</Button>
                 </InputGroup.Append>
